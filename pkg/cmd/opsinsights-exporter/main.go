@@ -23,6 +23,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"time"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
@@ -30,11 +31,21 @@ import (
 func main() {
 	ctx := context.Background()
 
+	// Start processing the expectations
+	go checkExpectations()
+
 	// Start the prometheus HTTP server and pass the exporter Collector to it
 	go serveMetrics()
 
 	ctx, _ = signal.NotifyContext(ctx, os.Interrupt)
 	<-ctx.Done()
+}
+
+func checkExpectations() {
+	for {
+		log.Printf("Checking expectations")
+		time.Sleep(2 * time.Second)
+	}
 }
 
 func serveMetrics() {
