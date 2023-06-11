@@ -57,7 +57,7 @@ type Metric struct {
 
 type Expectations struct {
 	Name       string   `yaml:"name"`
-	Datasource string   `yaml:"datasource"`
 	Metric     []string `yaml:"metrics"`
+	Datasource string   `yaml:"datasource"`
 	Query      string   `yaml:"query"`
 }
