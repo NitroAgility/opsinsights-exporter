@@ -17,9 +17,32 @@ limitations under the License.
 package main
 
 import (
+	"context"
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
-	fmt.Println("Hello World!")
+	ctx := context.Background()
+
+	// Start the prometheus HTTP server and pass the exporter Collector to it
+	go serveMetrics()
+
+	ctx, _ = signal.NotifyContext(ctx, os.Interrupt)
+	<-ctx.Done()
+}
+
+func serveMetrics() {
+	log.Printf("serving metrics at localhost:2225/metrics")
+	http.Handle("/metrics", promhttp.Handler())
+	err := http.ListenAndServe(":2225", nil)
+	if err != nil {
+		fmt.Printf("error serving http: %v", err)
+		return
+	}
 }

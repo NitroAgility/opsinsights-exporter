@@ -21,8 +21,11 @@ Notifications are fired if data expectations are not met. Data exepectations can
 Below a sample `OpsInsights-Exporter`config file:
 
 ```yaml
+settings:
+  app_name: edge-devices
+  sleep_for: 30
 datasources:
-    pg_order_db:
+    orders_db:
         type: DB
         arguments:
             dialect: PG
@@ -30,7 +33,7 @@ datasources:
             port: env:PG_DATABASE_PORT
             username: env:PG_DATABASE_USER
             password: env:PG_DATABASE_PASSWORD
-            database: env:PG_DATABASE_DBNAME
+            database: env:PG_DATABASE_NAME
 metrics:
     edge_device_up:
         type: counter
