@@ -34,15 +34,14 @@ settings:
     port: 2225
     idle: 30
 datasources:
-  - name: devices_db
-    type: DB
-    arguments: null
-    dialect: PG
-    host: env:PG_DATABASE_HOST
-    port: env:PG_DATABASE_PORT
-    username: env:PG_DATABASE_USER
-    password: env:PG_DATABASE_PASSWORD
-    database: env:PG_DATABASE_NAME
+  databases:
+    - name: devices_db
+      dialect: PG
+      host: env:PG_DATABASE_HOST
+      port: env:PG_DATABASE_PORT
+      username: env:PG_DATABASE_USER
+      password: env:PG_DATABASE_PASSWORD
+      database: env:PG_DATABASE_NAME
 metrics:
   - name: edge_device_up
     type: counter
@@ -57,7 +56,7 @@ expectations:
     datasource: pg_order_db
     metrics:
       - edge_device_up
-    sql: |
+    query: |
       SELECT 
           device AS device_name,
           ip     AS device_ip
@@ -66,7 +65,7 @@ expectations:
     datasource: pg_order_db
     metrics:
       - edge_device_up
-    sql: |
+    query: |
       SELECT 
           device AS device_name,
           ip     AS device_ip
