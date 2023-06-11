@@ -44,7 +44,7 @@ func main() {
 func checkExpectations() {
 	for {
 		log.Printf("Checking expectations")
-		time.Sleep(2 * time.Second)
+		time.Sleep(1 * time.Second)
 	}
 }
 
