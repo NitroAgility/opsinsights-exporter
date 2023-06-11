@@ -24,7 +24,7 @@ Below a sample `Ops Insights Exporter`config file:
 datasources:
     pg_order_db:
         type: PG
-        options:
+        arguments:
             host: env:PG_DATABASE_HOST
             port: env:PG_DATABASE_PORT
             username: env:PG_DATABASE_USER
@@ -40,7 +40,7 @@ metrics:
         description: Edge device is missing
         labels: device_name
 expectations:
-    edge_device_up:
+    devices_up:
         datasource: pg_order_db
         metrices:
             - edge_device_up
@@ -50,7 +50,7 @@ expectations:
                 ip     AS device_ip
             FROM edge_devices
             WHERE last_update >= NOW() - INTERVAL '30 minutes'
-    edge_device_down:
+    devices_down:
         datasource: pg_order_db
         metrices:
             - edge_device_up
