@@ -23,8 +23,9 @@ Below a sample `OpsInsights-Exporter`config file:
 ```yaml
 datasources:
     pg_order_db:
-        type: PG
+        type: DB
         arguments:
+            dialect: PG
             host: env:PG_DATABASE_HOST
             port: env:PG_DATABASE_PORT
             username: env:PG_DATABASE_USER
