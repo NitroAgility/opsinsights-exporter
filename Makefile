@@ -26,13 +26,13 @@ lint-fix:
 
 build-release:
 	mkdir -p dist
-	go build -o dist/ops-insights-exporter ./cmd/ops-insights-exporter
+	go build -o dist/ops-insights-exporter ./pkg/cmd/ops-insights-exporter
 
 build-docker:
 	docker build -t ops-insights-exporter .
 
 run-release:
-	go run ./cmd/ops-insights-exporter
+	go run ./pkg/cmd/ops-insights-exporter
 
 run-docker:
 	docker rm ops-insights-exporter
