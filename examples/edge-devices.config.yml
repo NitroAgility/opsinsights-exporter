@@ -7,13 +7,13 @@ settings:
 datasources:
   - name: devices_db
     type: DB
-    arguments: null
-    dialect: PG
-    host: env:PG_DATABASE_HOST
-    port: env:PG_DATABASE_PORT
-    username: env:PG_DATABASE_USER
-    password: env:PG_DATABASE_PASSWORD
-    database: env:PG_DATABASE_NAME
+    arguments:
+      dialect: PG
+      host: env:PG_DATABASE_HOST
+      port: env:PG_DATABASE_PORT
+      username: env:PG_DATABASE_USER
+      password: env:PG_DATABASE_PASSWORD
+      database: env:PG_DATABASE_NAME
 metrics:
   - name: edge_device_up
     type: counter
