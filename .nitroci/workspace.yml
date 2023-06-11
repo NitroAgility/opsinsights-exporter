@@ -1,7 +1,7 @@
 version: 1
 workspace:
   id: 6b928a66b1274f35af0e1f24eca336e7
-  name: opsinsights-exporter-sandbox
+  name: opsinsights-exporter
 commands:
   - name: up
     description: Docker Compose Up
