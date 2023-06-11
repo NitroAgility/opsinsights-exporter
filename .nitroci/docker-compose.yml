@@ -42,7 +42,6 @@ services:
       - "4000:3000"
     volumes:
       - "./config/grafana/datasources/all.yml:/etc/grafana/provisioning/datasources/all.yml"
-      - "./config/grafana/dashboards/all.yml:/etc/grafana/provisioning/dashboards/all.yml"
     environment:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: admin
