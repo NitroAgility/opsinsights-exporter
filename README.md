@@ -27,6 +27,7 @@ Notifications are fired if data expectations are not met. Data exepectations can
 Below a sample `OpsInsights-Exporter`config file:
 
 ```yaml
+version: 1
 settings:
   app:
     name: edge-devices
