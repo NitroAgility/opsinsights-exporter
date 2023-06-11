@@ -28,46 +28,47 @@ Below a sample `OpsInsights-Exporter`config file:
 
 ```yaml
 settings:
-  app_name: edge-devices
-  sleep_for: 30
+  app:
+    name: edge-devices
+    port: 2225
+    sleep_for: 30
 datasources:
-    orders_db:
-        type: DB
-        arguments:
-            dialect: PG
-            host: env:PG_DATABASE_HOST
-            port: env:PG_DATABASE_PORT
-            username: env:PG_DATABASE_USER
-            password: env:PG_DATABASE_PASSWORD
-            database: env:PG_DATABASE_NAME
+  devices_db:
+    type: DB
+    arguments:
+      dialect: PG
+      host: 'env:PG_DATABASE_HOST'
+      port: 'env:PG_DATABASE_PORT'
+      username: 'env:PG_DATABASE_USER'
+      password: 'env:PG_DATABASE_PASSWORD'
+      database: 'env:PG_DATABASE_NAME'
 metrics:
-    edge_device_up:
-        type: counter
-        description: Edge device is up and running
-        labels: device_name, device_ip
-    edge_device_down:
-        type: counter
-        description: Edge device is missing
-        labels: device_name
+  edge_device_up:
+    type: counter
+    description: Edge device is up and running
+    labels: 'device_name, device_ip'
+  edge_device_down:
+    type: counter
+    description: Edge device is missing
+    labels: device_name
 expectations:
-    devices_up:
-        datasource: pg_order_db
-        metrices:
-            - edge_device_up
-        sql: >
-            SELECT 
-                device AS device_name,
-                ip     AS device_ip
-            FROM edge_devices
-            WHERE last_update >= NOW() - INTERVAL '30 minutes'
-    devices_down:
-        datasource: pg_order_db
-        metrices:
-            - edge_device_up
-        sql: >
-            SELECT 
-                device AS device_name,
-                ip     AS device_ip
-            FROM edge_devices
-            WHERE last_update < NOW() - INTERVAL '30 minutes'
+  - name: devices_up
+    datasource: pg_order_db
+    metrics:
+      - edge_device_up
+    sql: |
+      SELECT 
+          device AS device_name,
+          ip     AS device_ip
+      FROM edge_devices WHERE last_update >= NOW() - INTERVAL '30 minutes'
+  - name: devices_down
+    datasource: pg_order_db
+    metrics:
+      - edge_device_up
+    sql: |
+      SELECT 
+          device AS device_name,
+          ip     AS device_ip
+      FROM edge_devices WHERE last_update < NOW() - INTERVAL '30 minutes'
+
 ```
