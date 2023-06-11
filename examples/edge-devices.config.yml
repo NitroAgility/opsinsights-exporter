@@ -24,18 +24,18 @@ metrics:
     labels: device_name
 expectations:
   - name: devices_up
-    datasource: pg_order_db
     metrics:
       - edge_device_up
+    datasource: pg_order_db
     query: |
       SELECT 
           device AS device_name,
           ip     AS device_ip
       FROM edge_devices WHERE last_update >= NOW() - INTERVAL "30 minutes"
   - name: devices_down
-    datasource: pg_order_db
     metrics:
       - edge_device_up
+    datasource: pg_order_db
     query: |
       SELECT 
           device AS device_name,
