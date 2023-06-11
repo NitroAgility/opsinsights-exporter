@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Ops-Insights Exporter",
+            "name": "opsinsights Exporter",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "./pkg/cmd/ops-insights-exporter/main.go"
+            "program": "./pkg/cmd/opsinsights-exporter/main.go"
         }
     ]
 }

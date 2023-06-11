@@ -1,4 +1,4 @@
-module github.com/NitroAgility/ops-insights-exporter
+module github.com/NitroAgility/opsinsights-exporter
 
 go 1.20
 

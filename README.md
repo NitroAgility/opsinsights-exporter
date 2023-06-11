@@ -1,11 +1,11 @@
 # OpsInsights-Exporter
 
-[![Build and Publish](https://github.com/NitroAgility/ops-insights-exporter/actions/workflows/ci-docker.yml/badge.svg)](https://github.com/NitroAgility/ops-insights-exporter/actions/workflows/ci-docker.yml) [![Docker Pulls](https://img.shields.io/docker/pulls/nitroagility/opsinsights-exporter)](https://hub.docker.com/r/nitroagility/opsinsights-exporter)
+[![Build and Publish](https://github.com/NitroAgility/opsinsights-exporter/actions/workflows/ci-docker.yml/badge.svg)](https://github.com/NitroAgility/opsinsights-exporter/actions/workflows/ci-docker.yml) [![Docker Pulls](https://img.shields.io/docker/pulls/nitroagility/opsinsights-exporter)](https://hub.docker.com/r/nitroagility/opsinsights-exporter)
 
 Prometheus Exporter for OpsInsights, detect anomalies before they become business incidents.
 
 <p align="center">
-    <img src="https://github.com/nitroagility/ops-insights-exporter/blob/main/logo.png" width="150"/>
+    <img src="https://github.com/nitroagility/opsinsights-exporter/blob/main/logo.png" width="150"/>
 </p>
 
 ## Overview

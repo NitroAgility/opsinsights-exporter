@@ -8,4 +8,4 @@ WORKDIR /app
 
 RUN /bin/bash ./scripts/build.sh
 
-ENTRYPOINT ["./ops-insights-exporter"]
+ENTRYPOINT ["./opsinsights-exporter"]
