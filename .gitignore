@@ -206,5 +206,6 @@ $RECYCLE.BIN/
 # Start Custom
 
 dist
+.nitro/.tmp
 
 # End Custom

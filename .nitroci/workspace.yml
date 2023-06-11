@@ -1,0 +1,15 @@
+version: 1
+workspace:
+  id: 6b928a66b1274f35af0e1f24eca336e7
+  name: opsinsights-exporter-sandbox
+commands:
+  - name: up
+    description: Docker Compose Up
+    steps:
+      - scripts:
+          - cd .nitroci && mkdir ./.tmp && docker-compose -p opsinsights-exporter-sandbox up -d
+  - name: down
+    description: Docker Compose Down
+    steps:
+      - scripts:
+          - cd .nitroci && docker-compose -p opsinsights-exporter-sandbox down && sudo rm -rf ./.tmp
