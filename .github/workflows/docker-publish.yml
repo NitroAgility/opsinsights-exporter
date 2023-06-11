@@ -22,9 +22,9 @@ jobs:
       - name: Build and tag Docker image
         run: |
           docker build -t nitroagility/opsinsights-exporter:latest .
-          docker tag nitroagility/opsinsights-exporter:latest nitroagility/opsinsights-exporter:${{ github.sha }}
+          docker tag nitroagility/opsinsights-exporter:latest nitroagility/opsinsights-exporter:${{ github.run_number }}
 
       - name: Push Docker image
         run: |
           docker push nitroagility/opsinsights-exporter:latest
-          docker push nitroagility/opsinsights-exporter:${{ github.sha }}
+          docker push nitroagility/opsinsights-exporter:${{ github.run_number }}
