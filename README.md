@@ -20,7 +20,7 @@ For instance let's suppose we have deployed an API to be used to collect data fr
 
 This would allow us to detect anomalies before they become business incidents.
 
-Notifications are fired if data expectations are not met. Data exepectations can query different data sources (for instance DB, S3, API).
+Notifications are fired if data expectations are met. Data exepectations can query different data sources (for instance DB, S3, API).
 
 ## Configuration File
 
