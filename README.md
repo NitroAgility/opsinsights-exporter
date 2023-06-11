@@ -4,6 +4,8 @@
 
 Prometheus Exporter for OpsInsights, detect anomalies before they become business incidents.
 
+![alt text](https://github.com/nitroagility/ops-insights-exporter/blob/main/logo.png?raw=true)
+
 ## Overview
 
 `OpsInsights-Exporter` is a tool you can use to get insights to make sure your apps are working as intended.
