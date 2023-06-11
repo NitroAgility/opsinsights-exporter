@@ -4,7 +4,9 @@
 
 Prometheus Exporter for OpsInsights, detect anomalies before they become business incidents.
 
-<img src="https://github.com/nitroagility/ops-insights-exporter/blob/main/logo.png" width="150" class="center"/>
+<p align="center">
+    <img src="https://github.com/nitroagility/ops-insights-exporter/blob/main/logo.png" width="150"/>
+</p>
 
 ## Overview
 
