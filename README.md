@@ -1,12 +1,12 @@
 # OpsInsights-Exporter
 
-Prometheus Exporter for Ops Insights, detect anomalies before they become business incidents.
+Prometheus Exporter for OpsInsights, detect anomalies before they become business incidents.
 
 ## Overview
 
 `OpsInsights-Exporter` is a tool you can use to get insights to make sure your apps are working as intended.
 
-It can often happen that the application runs correctly without raising any kind of error but at the same time it does not produce the expected data or business operations. These anomalies can be difficult to discover before they impact business operations.
+It can often happen that the application runs correctly without raising any kind of error but at the same time it does not produce the expected data or business operations. Those anomalies can be difficult to discover before they impact business operations.
 
 For instance let's suppose we have deployed an API to be used to collect data from external edge devices and we do expect at the least one update every 30 minutes by each device. Our API is running as expected however because of a firewall change the edge devices are unable to make requests to our API. How can we detect this issue?
 
