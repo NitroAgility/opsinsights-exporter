@@ -1,6 +1,6 @@
 # OpsInsights-Exporter
 
-|Build Status| |Docker Pulls|
+[![Build and Publish](https://github.com/NitroAgility/ops-insights-exporter/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/NitroAgility/ops-insights-exporter/actions/workflows/docker-publish.yml) [Docker Pulls](https://img.shields.io/docker/pulls/nitroagility/opsinsights-exporter)
 
 Prometheus Exporter for OpsInsights, detect anomalies before they become business incidents.
 
@@ -67,8 +67,3 @@ expectations:
             FROM edge_devices
             WHERE last_update < NOW() - INTERVAL '30 minutes'
 ```
-
-.. |Build Status| image:: https://github.com/nitroagility/opsinsights-exporter/actions/workflows/docker-publish.yml/badge.svg
-   :alt: Build Status
-.. |Docker Pulls| image:: https://img.shields.io/docker/pulls/nitroagility/opsinsights-exporter
-   :alt: Docker Pulls
