@@ -1,25 +1,25 @@
 version: 1
 settings:
-  app:
+  exporter:
     name: edge-devices
     port: 2225
-    sleep_for: 30
+    idle: 30
 datasources:
-  devices_db:
+  - name: devices_db
     type: DB
-    arguments:
-      dialect: PG
-      host: 'env:PG_DATABASE_HOST'
-      port: 'env:PG_DATABASE_PORT'
-      username: 'env:PG_DATABASE_USER'
-      password: 'env:PG_DATABASE_PASSWORD'
-      database: 'env:PG_DATABASE_NAME'
+    arguments: null
+    dialect: PG
+    host: env:PG_DATABASE_HOST
+    port: env:PG_DATABASE_PORT
+    username: env:PG_DATABASE_USER
+    password: env:PG_DATABASE_PASSWORD
+    database: env:PG_DATABASE_NAME
 metrics:
-  edge_device_up:
+  - name: edge_device_up
     type: counter
     description: Edge device is up and running
-    labels: 'device_name, device_ip'
-  edge_device_down:
+    labels: device_name, device_ip
+  - name: edge_device_down
     type: counter
     description: Edge device is missing
     labels: device_name
@@ -32,7 +32,7 @@ expectations:
       SELECT 
           device AS device_name,
           ip     AS device_ip
-      FROM edge_devices WHERE last_update >= NOW() - INTERVAL '30 minutes'
+      FROM edge_devices WHERE last_update >= NOW() - INTERVAL "30 minutes"
   - name: devices_down
     datasource: pg_order_db
     metrics:
@@ -41,4 +41,4 @@ expectations:
       SELECT 
           device AS device_name,
           ip     AS device_ip
-      FROM edge_devices WHERE last_update < NOW() - INTERVAL '30 minutes'
+      FROM edge_devices WHERE last_update < NOW() - INTERVAL "30 minutes"
