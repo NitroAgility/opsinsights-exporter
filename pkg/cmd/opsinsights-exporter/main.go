@@ -18,11 +18,12 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"errors"
 	"log"
 	"net/http"
 	"os"
 	"os/signal"
+	"sync"
 	"time"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -31,29 +32,50 @@ import (
 func main() {
 	ctx := context.Background()
 
+	done := make(chan struct{})
+	var wg sync.WaitGroup
+	wg.Add(1)
+
 	// Start processing the expectations
-	go checkExpectations()
+	go func() {
+		defer wg.Done()
+		for {
+			select {
+				case <- done:
+					return
+				default:
+					checkExpectations()
+				}
+		}
+	}()
 
 	// Start the prometheus HTTP server and pass the exporter Collector to it
-	go serveMetrics()
+	http.Handle("/metrics", promhttp.Handler())
+	server := http.Server{Addr: ":2234"}
+
+	go func() {
+		if err := server.ListenAndServe(); err != nil {
+			if !errors.Is(err, http.ErrServerClosed) {
+				log.Println("http server error:", err)
+			}
+		}
+	}()
 
 	ctx, _ = signal.NotifyContext(ctx, os.Interrupt)
 	<-ctx.Done()
+
+	log.Println("shutting down expectations")
+	close(done)
+
+	log.Println("shutting down http server")
+	if err := server.Shutdown(ctx); err != nil {
+		log.Fatal("server shutdown failed:", err)
+	}
+
+	wg.Wait()
 }
 
 func checkExpectations() {
-	for {
-		log.Printf("Checking expectations")
-		time.Sleep(1 * time.Second)
-	}
-}
-
-func serveMetrics() {
-	log.Printf("serving metrics at localhost:2225/metrics")
-	http.Handle("/metrics", promhttp.Handler())
-	err := http.ListenAndServe(":2225", nil)
-	if err != nil {
-		fmt.Printf("error serving http: %v", err)
-		return
-	}
+	log.Printf("Checking expectations")
+	time.Sleep(1 * time.Second)
 }
